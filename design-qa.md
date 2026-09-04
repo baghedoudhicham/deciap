@@ -53,8 +53,8 @@ The source uses a strong dark opening field followed by white data sections and 
 ### Pass 4: final signal palette and decision gate
 
 - Finding: [P2] The previous accent set did not separate product signal, human focus, and delivery pressure strongly enough for a decision surface.
-- Fix: protected the supplied mint-to-evergreen wordmark gradient and refined the interface around a warm paper/canvas base, deep evergreen structure, mint advantage signal, electric blue human focus, and coral pressure signal. Recommendation fit now has a visible weighted-fit line, while the non-recommended focus state uses blue for clearer scan priority.
-- Post-fix evidence: the fresh 927 × 534 preview showed the updated wordmark scale, dark hero, mint fit signal, blue/coral functional accents, and readable comparison rows. The browser interaction pass verified path inspection scroll, proof opening, rationale clearing disables commit, valid rationale restores commit, commit locks the note, and reset returns the opening state.
+- Fix: protected the supplied mint-to-evergreen wordmark gradient and refined the interface around a warm paper/canvas base, deep evergreen structure, mint advantage signal, electric blue human focus, and warm amber pressure signal. Recommendation fit now has a visible weighted-fit line, while the non-recommended focus state uses blue for clearer scan priority.
+- Post-fix evidence: the fresh 927 × 534 preview showed the updated wordmark scale, dark hero, mint fit signal, blue/amber functional accents, and readable comparison rows. The browser interaction pass verified path inspection scroll, proof opening, rationale clearing disables commit, valid rationale restores commit, commit locks the note, and reset returns the opening state.
 
 ### Pass 5: plain-language content and type polish
 
@@ -69,11 +69,17 @@ The source uses a strong dark opening field followed by white data sections and 
 - Fix: changed the main panel language to `Start with the brief`, `Compare the options`, `Check the trade-offs`, and `Choose this path` so the action sequence reads plainly without losing the editorial structure.
 - Post-fix evidence: the browser pass loaded the Team decision sample, confirmed the brief, deadline, constraints, notice, and activity update, verified the selected sample state, and confirmed sample buttons disable after staging. Reset returned the opening state with no horizontal overflow.
 
+### Pass 7: warm amber pressure signal
+
+- Finding: [P2] The pressure accent was reading too red against the calm mint and evergreen identity.
+- Fix: replaced the pressure role with a strong warm amber token, `#EFA83A`, plus a darker accessible text token and soft status background. Mint remains the advantage signal and blue remains the human-focus signal.
+- Post-fix evidence: the review capture showed amber on the primary tension marker, risk indicators, legend, and draft status without bleeding into recommendation or commit actions. The supplied wordmark gradient remains unchanged.
+
 ## Required fidelity surfaces
 
 - Fonts and typography: checked the Inter Tight display preference, local fallback chain, compact mono metadata, score alignment, body line-height, balanced wrapping, tooltip labels, and mobile scaling. The exact source font is not bundled; the self-contained fallback is intentional and recorded as P3.
 - Spacing and layout rhythm: checked page gutters, panel padding, rules, asymmetric column proportions, recommendation height, path-row density, sticky proof panel, and mobile stacking.
-- Colours and visual tokens: checked deep hero, paper panels, warm canvas, mint recommendation/advantage, coral pressure points, blue human focus/changes, and rule contrast against the source direction. The supplied logo gradient remains unchanged as a protected brand asset.
+- Colours and visual tokens: checked deep hero, paper panels, warm canvas, mint recommendation/advantage, amber pressure points, blue human focus/changes, and rule contrast against the source direction. The supplied logo gradient remains unchanged as a protected brand asset.
 - Image quality and asset fidelity: the supplied custom wordmark is used as the real SVG asset at `public/assets/deciap-wordmark.svg`; no source imagery or custom icon asset was substituted. The optional standalone icon was not added because it would duplicate the wordmark without improving comprehension.
 - Copy and content: removed generic monitoring language and em dashes, then kept only plain-language content needed to frame, compare, pressure-test, and commit a decision. Agent capability remains in the registered tool layer and shared state rather than dominating the human-facing copy.
 
