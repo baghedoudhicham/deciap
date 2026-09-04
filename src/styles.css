@@ -22,7 +22,10 @@
   --mint-dark: #0a7f69;
   --mint-ink: #075f51;
   --blue: #5967ff;
-  --coral: #ef685c;
+  --amber: #efa83a;
+  --amber-ink: #8c5208;
+  --amber-soft: #fff2d6;
+  --amber-line: #e5bd70;
   --slate: #98a7a0;
   --display: "Inter Tight", "Arial Narrow", Bahnschrift, "Segoe UI", Arial, sans-serif;
   --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -1133,8 +1136,8 @@ input[type="range"]::-moz-range-thumb {
   background: var(--mint-dark);
 }
 
-.legend-dot.coral {
-  background: var(--coral);
+.legend-dot.amber {
+  background: var(--amber);
 }
 
 .focused-path {
@@ -1199,7 +1202,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .evidence-item.watch {
-  border-left-color: var(--coral);
+  border-left-color: var(--amber);
 }
 
 .evidence-topline {
@@ -1229,8 +1232,8 @@ input[type="range"]::-moz-range-thumb {
   background: var(--blue);
 }
 
-.signal-mark.coral {
-  background: var(--coral);
+.signal-mark.amber {
+  background: var(--amber);
 }
 
 .signal-mark.slate,
@@ -1282,7 +1285,7 @@ input[type="range"]::-moz-range-thumb {
   left: 0;
   width: 6px;
   height: 1px;
-  background: var(--coral);
+  background: var(--amber);
   content: "";
 }
 
@@ -1293,9 +1296,9 @@ input[type="range"]::-moz-range-thumb {
 .draft-status {
   min-height: 21px;
   padding: 0 7px;
-  border: 1px solid #f1b5a9;
-  color: #a24c42;
-  background: #fff0ec;
+  border: 1px solid var(--amber-line);
+  color: var(--amber-ink);
+  background: var(--amber-soft);
   font-family: var(--mono);
   font-size: 8px;
   font-weight: 700;
@@ -1321,7 +1324,7 @@ input[type="range"]::-moz-range-thumb {
 .risk-line {
   justify-content: space-between;
   margin-top: 9px;
-  color: #a24c42;
+  color: var(--amber-ink);
   font-family: var(--mono);
   font-size: 8px;
   text-transform: uppercase;
@@ -1421,7 +1424,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .ledger-panel .evidence-item.watch {
-    border-top-color: var(--coral);
+    border-top-color: var(--amber);
   }
 
   .ledger-panel .tradeoff-block {
@@ -1669,7 +1672,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .ledger-panel .evidence-item.watch {
-    border-left-color: var(--coral);
+    border-left-color: var(--amber);
   }
 
   .ledger-panel .tradeoff-block {
