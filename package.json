@@ -1,7 +1,7 @@
 {
   "name": "deciap",
   "version": "0.0.0",
-  "description": "DECIAP — a decision architecture for turning launch briefs into defensible calls.",
+  "description": "DECIAP / a decision architecture for turning launch briefs into defensible calls.",
   "private": true,
   "type": "module",
   "scripts": {
