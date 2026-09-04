@@ -170,6 +170,7 @@ export function App() {
   const focusedPath = pathById[room.focusedPathId] || PATHS[1];
   const focusedScore = room.ranking.find((item) => item.id === focusedPath.id)?.score || 0;
   const recommendedPath = rankedPaths[0] || { ...PATHS[1], score: 0 };
+  const rationaleReady = Boolean(room.draft?.rationale?.trim());
 
   const commitRoom = useCallback((nextRoom) => {
     roomRef.current = nextRoom;
@@ -270,6 +271,11 @@ export function App() {
     commitRoom(next);
     addActivity(actor === "Agent" ? "Agent" : "Human", "Proof opened · " + path.name, actor === "Agent" ? "agent" : "human");
     notify("Proof opened for " + path.name + ".");
+    if (actor === "Human") {
+      window.requestAnimationFrame(() => {
+        document.querySelector(".ledger-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
     return successResponse(next, "Launch path evidence opened.", {
       path: {
         id: path.id,
@@ -345,6 +351,10 @@ export function App() {
     const current = roomRef.current;
     if (!current.draft) {
       notify("Use a path before committing the decision.");
+      return;
+    }
+    if (!current.draft.rationale.trim()) {
+      notify("Add a reason before committing the decision.");
       return;
     }
     const next = {
@@ -509,7 +519,13 @@ export function App() {
           <div className="hero-choice">
             <div className="choice-topline">
               <span className="eyebrow light">Current recommendation</span>
-              <span className="choice-score">{recommendedPath.score}</span>
+              <div className="choice-score-wrap">
+                <span className="choice-score">{recommendedPath.score}</span>
+                <span className="choice-score-meta">weighted fit</span>
+              </div>
+            </div>
+            <div className="choice-fit" role="img" aria-label={recommendedPath.score + " out of 100 weighted fit"}>
+              <span style={{ width: recommendedPath.score + "%" }} />
             </div>
             <div className="choice-index"><strong>{recommendedPath.index}</strong><span>weighted fit / 100</span></div>
             <h2>{recommendedPath.name}</h2>
@@ -654,6 +670,8 @@ export function App() {
                   <button
                     className={"row-action " + (path.id === room.focusedPathId ? "active" : "")}
                     type="button"
+                    aria-pressed={path.id === room.focusedPathId}
+                    aria-label={(path.id === room.focusedPathId ? "Proof open for " : "Open proof for ") + path.name}
                     onClick={() => inspectLaunchPath({ pathId: path.id }, "Human")}
                   >
                     {path.id === room.focusedPathId ? "Proof open" : "Open proof"} <span aria-hidden="true">↗</span>
@@ -723,6 +741,7 @@ export function App() {
                     value={room.draft.rationale}
                     onChange={(event) => updateDraftRationale(event.target.value)}
                     aria-label="Decision rationale"
+                    disabled={Boolean(room.committedAt)}
                   />
                   {room.draft.unresolvedRisks?.length > 0 && (
                     <div className="risk-line">
@@ -730,8 +749,8 @@ export function App() {
                       <span>{room.draft.unresolvedRisks.length}</span>
                     </div>
                   )}
-                  <button className="commit-button" type="button" onClick={commitDecision} disabled={Boolean(room.committedAt)}>
-                    {room.committedAt ? "Decision committed" : "Commit decision"} <span aria-hidden="true">↗</span>
+                  <button className="commit-button" type="button" onClick={commitDecision} disabled={Boolean(room.committedAt) || !rationaleReady}>
+                    {room.committedAt ? "Decision committed" : rationaleReady ? "Commit decision" : "Add a reason first"} <span aria-hidden="true">↗</span>
                   </button>
                   <p className="commit-helper">Only you can finalize this decision{room.committedAt ? " · committed at " + formatClock(room.committedAt) : ""}.</p>
                 </>
