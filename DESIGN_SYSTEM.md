@@ -1,11 +1,11 @@
 # DECIAP — interface system
 
-DECIAP is a decision architecture: a calm, evidence-led surface for making one consequential call. The visual language is deliberately editorial and exacting—strong black/white structure, a single signal colour, compact technical labels, and no decorative noise.
+DECIAP is a decision architecture: a calm, evidence-led surface for making one consequential call. The visual language is deliberately editorial and exacting—strong dark/light structure, a protected identity gradient, three functional accent roles, compact technical labels, and no decorative noise.
 
 ## Brand
 
 - Primary working name: `DECIAP`.
-- Wordmark: the supplied custom `DECIAP` SVG, used as the real source asset at `public/assets/deciap-wordmark.svg`. Its mint-to-deep-green gradient is reserved for the identity, not sprayed across the interface.
+- Wordmark: the supplied custom `DECIAP` SVG, used as the real source asset at `public/assets/deciap-wordmark.svg`. Its mint-to-deep-green gradient remains protected as the identity signature, not sprayed across the interface.
 - Alternate under test: `DESIAP`. The wordmark is isolated in `src/App.jsx`, so the alternate can be tested without changing the product hierarchy.
 - Brand promise: choose one path, know why.
 
@@ -13,17 +13,17 @@ DECIAP is a decision architecture: a calm, evidence-led surface for making one c
 
 | Token | Value | Use |
 | --- | --- | --- |
-| Ink | `#0D1715` | Primary type, rules, active controls |
-| Deep | `#0E1816` | Hero, commit action, proof panel |
-| Paper | `#F7FAF8` | Main surfaces and form fields |
-| Canvas | `#E7ECE8` | Page background and negative space |
-| Signal mint | `#66E4C5` | Recommendation, progress, primary action |
-| Mint dark | `#168D77` | Accessible text, rails, score bars |
-| Pressure amber | `#EAB06A` | Trade-offs and unresolved risk |
-| Human blue | `#789FFF` | Human-authored changes |
-| Rule | `#CBD6D1` | Borders and dividers |
+| Ink | `#101B1A` | Primary type, rules, active controls |
+| Deep | `#0C1817` | Hero, commit action, proof panel |
+| Paper | `#FBFBF6` | Main surfaces and form fields |
+| Canvas | `#F2F0E8` | Warm page background and negative space |
+| Signal mint | `#65E8CA` | Recommendation, progress, primary action |
+| Mint dark | `#0A7F69` | Accessible text, rails, score bars |
+| Pressure coral | `#EF685C` | Trade-offs and unresolved risk |
+| Human blue | `#5967FF` | Human-authored changes and focused proof |
+| Rule | `#D6D9D0` | Borders and dividers |
 
-Mint is reserved for “this helps the decision”. Amber is reserved for “look closer”. Blue identifies a human action. No status colour is used as decoration.
+Mint is reserved for “this helps the decision”. Coral is reserved for “look closer”. Blue identifies a human action or the proof currently in focus. No accent colour is used as decoration.
 
 ## Type system
 
