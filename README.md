@@ -8,7 +8,7 @@ The page keeps the human and the agent in the same decision surface:
 - The agent can read the room, compare launch paths, open evidence, and stage a recommendation.
 - The human reviews the rationale and commits the final decision.
 
-The demo uses deterministic seeded data so every tool call is inspectable and repeatable. There is no login, backend, external API key, payment flow, or external side effect.
+The demo uses deterministic seeded data so every tool call is inspectable and repeatable. Three small sample briefs make the first run immediate without taking over the user's own brief. There is no login, backend, external API key, payment flow, or external side effect.
 
 The visual system is documented in [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md). `DECIAP` is the current working identity; the UI keeps the wordmark in one place so `DESIAP` can be tested later without changing the interaction model.
 
