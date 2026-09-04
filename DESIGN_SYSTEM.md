@@ -1,6 +1,6 @@
-# DECIAP — interface system
+# DECIAP / interface system
 
-DECIAP is a decision architecture: a calm, evidence-led surface for making one consequential call. The visual language is deliberately editorial and exacting—strong dark/light structure, a protected identity gradient, three functional accent roles, compact technical labels, and no decorative noise.
+DECIAP is a decision architecture: a calm, evidence-led surface for making one consequential call. The visual language is deliberately editorial and exacting: strong dark/light structure, a protected identity gradient, three functional accent roles, compact technical labels, and no decorative noise.
 
 ## Brand
 
