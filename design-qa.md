@@ -1,4 +1,4 @@
-# DECIAP — visual QA
+# DECIAP / visual QA
 
 ## Evidence
 
@@ -30,45 +30,52 @@ The source uses a strong dark opening field followed by white data sections and 
 
 ## Comparison history
 
-### Pass 1 — baseline audit
+### Pass 1: baseline audit
 
 - Finding: [P2] The opening surface gave equal emphasis to room telemetry, matrix ranking, and review, with labels such as “LIVE NOTE”, “RANKED LIVE”, “LOCAL SESSION”, and “STATE v01”.
 - Fix: replaced telemetry language with a decision sequence, a single recommendation spine, “Next move” guidance, and user-centred labels: “Frame”, “Compare”, “Pressure test”, and “Commit”.
 - Finding: [P2] The existing `DR / Decision Room` lockup read as a placeholder rather than an authored product identity.
 - Fix: replaced the placeholder lockup with the supplied custom DECIAP wordmark asset and documented the colour/type system.
 
-### Pass 2 — post-fix review
+### Pass 2: post-fix review
 
 - P0: none.
 - P1: none.
 - P2: none.
 - Post-fix evidence: the fresh preview rendered the revised title, wordmark, decision sequence, recommendation, proof panel, and commit gate; wide and mobile captures showed no layout break or overflow.
 
-### Pass 3 — supplied logo integration
+### Pass 3: supplied logo integration
 
 - Finding: [P1] The product identity still used a generated placeholder lockup rather than the supplied authored mark.
 - Fix: added the exact source asset at `public/assets/deciap-wordmark.svg` and replaced the placeholder markup with an image using its native 196 × 69 proportions.
 - Post-fix evidence: the fresh preview loaded the asset successfully at 111 × 39.075 CSS pixels, with natural dimensions 196 × 69 and an empty error/warning log. Mobile retained the same asset without overflow.
 
-### Pass 4 — final signal palette and decision gate
+### Pass 4: final signal palette and decision gate
 
 - Finding: [P2] The previous accent set did not separate product signal, human focus, and delivery pressure strongly enough for a decision surface.
 - Fix: protected the supplied mint-to-evergreen wordmark gradient and refined the interface around a warm paper/canvas base, deep evergreen structure, mint advantage signal, electric blue human focus, and coral pressure signal. Recommendation fit now has a visible weighted-fit line, while the non-recommended focus state uses blue for clearer scan priority.
 - Post-fix evidence: the fresh 927 × 534 preview showed the updated wordmark scale, dark hero, mint fit signal, blue/coral functional accents, and readable comparison rows. The browser interaction pass verified path inspection scroll, proof opening, rationale clearing disables commit, valid rationale restores commit, commit locks the note, and reset returns the opening state.
 
+### Pass 5: plain-language content and type polish
+
+- Finding: [P2] A few labels were more technical than they needed to be, and the profile abbreviations relied on memory rather than guidance.
+- Fix: replaced em-dash copy, simplified the hero explanation, changed the hero score language to `fit score`, and refined the display stack to prefer Inter Tight with reliable local fallbacks. Body copy now uses more forgiving line-height and balanced wrapping. Profile abbreviations expose their full metric name and score through a keyboard-accessible tooltip.
+- Post-fix evidence: the fresh preview showed the simplified explanation, strong headline silhouette, readable paragraph measure, and 12 metric tooltip targets. The primary path journey still scrolls to proof and reset returns the opening state.
+
 ## Required fidelity surfaces
 
-- Fonts and typography: checked display family fallback, tight headline tracking, compact mono metadata, score alignment, body line-height, wrapping, and mobile scaling. The exact source font is not bundled; the self-contained fallback is intentional and recorded as P3.
+- Fonts and typography: checked the Inter Tight display preference, local fallback chain, compact mono metadata, score alignment, body line-height, balanced wrapping, tooltip labels, and mobile scaling. The exact source font is not bundled; the self-contained fallback is intentional and recorded as P3.
 - Spacing and layout rhythm: checked page gutters, panel padding, rules, asymmetric column proportions, recommendation height, path-row density, sticky proof panel, and mobile stacking.
 - Colours and visual tokens: checked deep hero, paper panels, warm canvas, mint recommendation/advantage, coral pressure points, blue human focus/changes, and rule contrast against the source direction. The supplied logo gradient remains unchanged as a protected brand asset.
 - Image quality and asset fidelity: the supplied custom wordmark is used as the real SVG asset at `public/assets/deciap-wordmark.svg`; no source imagery or custom icon asset was substituted. The optional standalone icon was not added because it would duplicate the wordmark without improving comprehension.
-- Copy and content: removed generic monitoring language and kept only content needed to frame, compare, pressure-test, and commit a decision. Agent capability remains in the registered tool layer and shared state rather than dominating the human-facing copy.
+- Copy and content: removed generic monitoring language and em dashes, then kept only plain-language content needed to frame, compare, pressure-test, and commit a decision. Agent capability remains in the registered tool layer and shared state rather than dominating the human-facing copy.
 
 ## Interaction and accessibility spot-check
 
 - Primary controls work: reset case, brief edit, time edit, weighting sliders, recalculate fit, test recommendation, open proof, use this path, edit rationale, and commit decision.
 - Staging and commitment remain distinct; the final commit is human-controlled and disabled after commitment.
 - Inputs have visible labels, controls have descriptive names, focus outlines are defined, and status is not conveyed by colour alone.
+- Metric abbreviations are marked up with full-name tooltips and keyboard focus, while score bars expose their value to assistive technology.
 - `prefers-reduced-motion` is respected for the small hover transitions.
 
 ## Findings
