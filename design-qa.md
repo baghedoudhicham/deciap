@@ -62,6 +62,13 @@ The source uses a strong dark opening field followed by white data sections and 
 - Fix: replaced em-dash copy, simplified the hero explanation, changed the hero score language to `fit score`, and refined the display stack to prefer Inter Tight with reliable local fallbacks. Body copy now uses more forgiving line-height and balanced wrapping. Profile abbreviations expose their full metric name and score through a keyboard-accessible tooltip.
 - Post-fix evidence: the fresh preview showed the simplified explanation, strong headline silhouette, readable paragraph measure, and 12 metric tooltip targets. The primary path journey still scrolls to proof and reset returns the opening state.
 
+### Pass 6: first-use helpers and flow clarity
+
+- Finding: [P2] The decision surface explained the workflow, but a first-time user still had to invent a brief before experiencing the product.
+- Fix: added three compact sample briefs: Product launch, Team decision, and Feature cut. The selected sample is visibly marked, the helper explains that it can be edited, and sample loading is disabled after a decision is staged so it cannot silently replace an active decision.
+- Fix: changed the main panel language to `Start with the brief`, `Compare the options`, `Check the trade-offs`, and `Choose this path` so the action sequence reads plainly without losing the editorial structure.
+- Post-fix evidence: the browser pass loaded the Team decision sample, confirmed the brief, deadline, constraints, notice, and activity update, verified the selected sample state, and confirmed sample buttons disable after staging. Reset returned the opening state with no horizontal overflow.
+
 ## Required fidelity surfaces
 
 - Fonts and typography: checked the Inter Tight display preference, local fallback chain, compact mono metadata, score alignment, body line-height, balanced wrapping, tooltip labels, and mobile scaling. The exact source font is not bundled; the self-contained fallback is intentional and recorded as P3.
