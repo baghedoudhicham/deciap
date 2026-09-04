@@ -27,7 +27,7 @@ Mint is reserved for “this helps the decision”. Coral is reserved for “loo
 
 ## Type system
 
-- Display: `Arial Narrow`, `Helvetica Neue`, `Segoe UI`, Arial, sans-serif.
+- Display: `Inter Tight`, `Arial Narrow`, `Bahnschrift`, `Segoe UI`, Arial, sans-serif.
 - Body: `Inter`, `Helvetica Neue`, `Segoe UI`, Arial, sans-serif.
 - Technical labels: `IBM Plex Mono`, `SFMono-Regular`, Consolas, monospace.
 - Display headlines use tight tracking (`-0.07em` to `-0.085em`) and short line-height (`0.86–0.98`) to create a decisive silhouette.
@@ -47,17 +47,17 @@ Mint is reserved for “this helps the decision”. Coral is reserved for “loo
 - `Wordmark`: supplied DECIAP lockup with its original proportions and gradient.
 - `Decision sequence`: Frame → Compare → Commit. This replaces generic dashboard status language with the actual user journey.
 - `Recommendation`: one prominent path, one fit score, one reason, one next action.
-- `Brief panel`: raw brief, time available, hard constraints, and five adjustable priorities.
-- `Path row`: rank, path, fit, four-signal profile, and a single “Open proof” action.
-- `Proof panel`: selected path, evidence, pressure points, and the decision note.
+- `Brief panel`: raw brief, sample starting points, time available, hard constraints, and five adjustable priorities.
+- `Path row`: rank, path, fit, four-signal profile with explained abbreviations, and a single “See evidence” action.
+- `Review panel`: selected path, evidence, risks to watch, and the decision note.
 - `Commit gate`: draft first; human commit second. The final action is explicit and never implied by an agent action.
 - `Changes`: compact trust layer showing what moved, without pretending to be a monitoring dashboard.
 
 ## Content rules
 
-- Prefer verbs and concrete nouns: “Open proof”, “Use this path”, “Commit decision”.
+- Prefer verbs and concrete nouns: “See evidence”, “Choose this path”, “Commit decision”.
 - Avoid synthetic product language such as “live”, “system status”, “ranked live”, “AI-powered”, “seamless”, and “unlock”.
-- Keep one primary question visible per panel: what must be true, three ways forward, what could break, make the call.
+- Keep one primary question visible per panel: start with the brief, compare the options, check the trade-offs, make the call.
 - Explain a score with evidence and pressure points; never let the number stand alone.
 - Keep agent capability in the tool layer and the shared state model. The human-facing UI should read as a clear decision tool first.
 
