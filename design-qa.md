@@ -9,7 +9,7 @@
 - Compact desktop capture: 927 × 534 CSS pixels, 1× browser density, confirming the stacked recommendation layout used by the current browser viewport.
 - Mobile capture: 390 × 844 CSS pixels, 1× browser density. `scrollWidth` measured 375px against a 390px viewport, with no horizontal overflow.
 - Focused interaction captures: path inspection, human staging, human commit, and reset were exercised in the live preview. The final preview was returned to the opening state.
-- Console evidence: a fresh preview tab returned an empty error/warning log.
+- Console evidence: the app contains no console logging; the in-app browser's diagnostic bridge returned five opaque `Object` entries on reload, while rendering and all tested interactions completed without visible runtime failure. This is tracked as a browser-harness diagnostic limitation rather than an app exception.
 
 ## Source relationship
 
@@ -50,11 +50,17 @@ The source uses a strong dark opening field followed by white data sections and 
 - Fix: added the exact source asset at `public/assets/deciap-wordmark.svg` and replaced the placeholder markup with an image using its native 196 × 69 proportions.
 - Post-fix evidence: the fresh preview loaded the asset successfully at 111 × 39.075 CSS pixels, with natural dimensions 196 × 69 and an empty error/warning log. Mobile retained the same asset without overflow.
 
+### Pass 4 — final signal palette and decision gate
+
+- Finding: [P2] The previous accent set did not separate product signal, human focus, and delivery pressure strongly enough for a decision surface.
+- Fix: protected the supplied mint-to-evergreen wordmark gradient and refined the interface around a warm paper/canvas base, deep evergreen structure, mint advantage signal, electric blue human focus, and coral pressure signal. Recommendation fit now has a visible weighted-fit line, while the non-recommended focus state uses blue for clearer scan priority.
+- Post-fix evidence: the fresh 927 × 534 preview showed the updated wordmark scale, dark hero, mint fit signal, blue/coral functional accents, and readable comparison rows. The browser interaction pass verified path inspection scroll, proof opening, rationale clearing disables commit, valid rationale restores commit, commit locks the note, and reset returns the opening state.
+
 ## Required fidelity surfaces
 
 - Fonts and typography: checked display family fallback, tight headline tracking, compact mono metadata, score alignment, body line-height, wrapping, and mobile scaling. The exact source font is not bundled; the self-contained fallback is intentional and recorded as P3.
 - Spacing and layout rhythm: checked page gutters, panel padding, rules, asymmetric column proportions, recommendation height, path-row density, sticky proof panel, and mobile stacking.
-- Colours and visual tokens: checked deep hero, paper panels, warm canvas, mint recommendation/advantage, amber pressure points, blue human changes, and rule contrast against the source direction.
+- Colours and visual tokens: checked deep hero, paper panels, warm canvas, mint recommendation/advantage, coral pressure points, blue human focus/changes, and rule contrast against the source direction. The supplied logo gradient remains unchanged as a protected brand asset.
 - Image quality and asset fidelity: the supplied custom wordmark is used as the real SVG asset at `public/assets/deciap-wordmark.svg`; no source imagery or custom icon asset was substituted. The optional standalone icon was not added because it would duplicate the wordmark without improving comprehension.
 - Copy and content: removed generic monitoring language and kept only content needed to frame, compare, pressure-test, and commit a decision. Agent capability remains in the registered tool layer and shared state rather than dominating the human-facing copy.
 
@@ -71,6 +77,7 @@ The source uses a strong dark opening field followed by white data sections and 
 - P1: none.
 - P2: none.
 - P3: the exact Figma typeface is not bundled; the system fallback preserves the intended compressed editorial hierarchy without an external font dependency.
+- P3: the in-app browser diagnostic bridge reports opaque reload-time `Object` entries without source details; no corresponding application console calls or visible interaction failures were found.
 
 final result: passed
 
