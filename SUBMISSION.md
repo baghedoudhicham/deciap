@@ -1,4 +1,4 @@
-# DECIAP — Devpost submission draft
+# DECIAP / Devpost submission draft
 
 ## One-line summary
 
@@ -46,7 +46,7 @@ Each tool has a typed input schema and an execute function that updates the same
 
 Open the live URL in ChatGPT's in-app browser and ask:
 
-> Read the decision room. Compare the launch paths against the current brief, inspect the recommended path, and stage—but do not commit—the recommendation.
+> Read the decision room. Compare the launch paths against the current brief, inspect the recommended path, and stage the recommendation without committing it.
 
 Then review the visible brief, matrix, proof panel, and staged decision. Click **Commit decision** to demonstrate the explicit human-only handoff.
 
@@ -66,5 +66,4 @@ Then review the visible brief, matrix, proof panel, and staged decision. Click *
 - [ ] Public YouTube demo is under three minutes, has clear audio, and contains no third-party copyrighted music or marks.
 - [ ] Devpost project name and branding use **DECIAP** consistently.
 - [ ] Live URL, repository URL, and YouTube URL are pasted into the Devpost form.
-
 
