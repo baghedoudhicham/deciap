@@ -512,7 +512,7 @@ export function App() {
       },
     ];
 
-    const registrations = toolDefinitions.map((tool) => modelContext.registerTool(tool));
+    const registrations = toolDefinitions.map((tool) => document.modelContext.registerTool(tool));
     setWebmcpStatus("ready");
     setNotice("Workspace ready. Start with the brief, then test the path that wins.");
     addActivity("Agent", "Workspace connected", "agent");
