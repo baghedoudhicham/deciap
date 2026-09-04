@@ -50,7 +50,7 @@ const PATHS = [
     evidence: [
       { label: "Time to first use", value: "12+ hrs", note: "Multiple states and services need to be made believable.", tone: "watch" },
       { label: "Shared context", value: "Broad", note: "Powerful in theory, but harder to explain and test.", tone: "neutral" },
-      { label: "Primary tension", value: "Scope drift", note: "A wide product can hide the core human–agent moment.", tone: "watch" },
+      { label: "Primary tension", value: "Scope drift", note: "A wide product can hide the core human and agent moment.", tone: "watch" },
     ],
     tradeoffs: ["Highest long-term upside", "Weakest deadline fit", "Too many unproven dependencies"],
   },
@@ -142,7 +142,7 @@ function formatClock(isoDate) {
 
 function ScoreBar({ score }) {
   return (
-    <div className="score-bar" aria-label={score + " out of 100"}>
+    <div className="score-bar" role="img" aria-label={score + " out of 100"}>
       <span style={{ width: score + "%" }} />
     </div>
   );
@@ -502,7 +502,7 @@ export function App() {
             <div>
               <div className="eyebrow light">Decision architecture / launch</div>
               <h1>Choose one path.<br /><span>Know why.</span></h1>
-              <p>Turn a messy launch brief into one defensible call—with evidence strong enough to survive the next question.</p>
+              <p>DECIAP turns a launch brief into one clear choice. It compares three paths, shows the trade-offs, and keeps your reason with the decision.</p>
             </div>
             <div className="hero-bottom">
               <div className="decision-sequence" aria-label="Decision sequence">
@@ -521,13 +521,13 @@ export function App() {
               <span className="eyebrow light">Current recommendation</span>
               <div className="choice-score-wrap">
                 <span className="choice-score">{recommendedPath.score}</span>
-                <span className="choice-score-meta">weighted fit</span>
+                <span className="choice-score-meta">fit score</span>
               </div>
             </div>
-            <div className="choice-fit" role="img" aria-label={recommendedPath.score + " out of 100 weighted fit"}>
+            <div className="choice-fit" role="img" aria-label={recommendedPath.score + " out of 100 fit score"}>
               <span style={{ width: recommendedPath.score + "%" }} />
             </div>
-            <div className="choice-index"><strong>{recommendedPath.index}</strong><span>weighted fit / 100</span></div>
+            <div className="choice-index"><strong>{recommendedPath.index}</strong><span>fit score / 100</span></div>
             <h2>{recommendedPath.name}</h2>
             <p>{recommendedPath.summary}</p>
             <button className="choice-button" type="button" onClick={() => inspectLaunchPath({ pathId: recommendedPath.id }, "Human")}>
@@ -592,7 +592,7 @@ export function App() {
                 <span className="eyebrow">Weight the call</span>
                 <h3>What wins if it gets tight?</h3>
               </div>
-              <span className="mono-note">0—100</span>
+              <span className="mono-note">0 to 100</span>
             </div>
             <div className="criteria-list">
               {CRITERIA.map((criterion) => (
@@ -631,13 +631,13 @@ export function App() {
               </div>
             </div>
             <div className="matrix-intro">
-              <p>Pressure-test the recommendation against the same criteria.</p>
+              <p>Compare each path using the same five criteria.</p>
               <span className="scale-note">strength →</span>
             </div>
-            <div className="matrix-columns" aria-hidden="true">
+            <div className="matrix-columns">
               <span>Path</span>
               <span>Fit</span>
-              <span>Profile</span>
+              <span title="Speed, user value, distinctiveness, and delivery confidence.">Profile</span>
               <span>Proof</span>
             </div>
             <div className="path-list">
@@ -661,8 +661,18 @@ export function App() {
                   </div>
                   <div className="profile-grid">
                     {CRITERIA.slice(0, 4).map((criterion) => (
-                      <div className="profile-item" key={criterion.key}>
-                        <span>{criterion.short}</span>
+                      <div
+                        className="profile-item"
+                        key={criterion.key}
+                      >
+                        <abbr
+                          className="metric-abbr"
+                          title={criterion.label + ": " + path.profile[criterion.key] + " out of 100"}
+                          aria-label={criterion.label + ": " + path.profile[criterion.key] + " out of 100"}
+                          tabIndex="0"
+                        >
+                          {criterion.short}
+                        </abbr>
                         <strong>{path.profile[criterion.key]}</strong>
                       </div>
                     ))}
@@ -681,7 +691,7 @@ export function App() {
             </div>
             <div className="matrix-footer">
               <span className="legend-copy"><i className="legend-dot mint" /> advantage <i className="legend-dot coral" /> pressure point</span>
-              <span className="mono-note">same scale / five criteria</span>
+              <span className="mono-note" title="Every path uses the same five weighted criteria.">same scale / five criteria</span>
             </div>
           </section>
 
