@@ -70,6 +70,30 @@ const DEFAULT_BRIEF = {
   mustHaves: ["No sign-in", "One core task", "3-minute proof", "Agent access"],
 };
 
+const SAMPLE_BRIEFS = [
+  {
+    id: "product-launch",
+    label: "Product launch",
+    text: "We need to launch a useful public web product by tomorrow. It should solve one concrete problem, work without sign-in, prove its value in under three minutes, and remain maintainable after the demo.",
+    deadlineHours: 8,
+    mustHaves: ["No sign-in", "One core task", "3-minute proof", "Agent access"],
+  },
+  {
+    id: "team-decision",
+    label: "Team decision",
+    text: "Our team needs to choose one direction before Friday. The decision should be easy to explain, simple to test, and clear enough for one person to own.",
+    deadlineHours: 4,
+    mustHaves: ["One owner", "Clear trade-off", "Decision by Friday", "Written reason"],
+  },
+  {
+    id: "feature-cut",
+    label: "Feature cut",
+    text: "We need to decide which feature to cut before release. Protect the core user outcome, avoid new dependencies, and keep the planned release date.",
+    deadlineHours: 3,
+    mustHaves: ["Protect core task", "No new dependencies", "Keep release date", "Record trade-off"],
+  },
+];
+
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
@@ -269,8 +293,8 @@ export function App() {
       stateVersion: current.stateVersion + 1,
     };
     commitRoom(next);
-    addActivity(actor === "Agent" ? "Agent" : "Human", "Proof opened · " + path.name, actor === "Agent" ? "agent" : "human");
-    notify("Proof opened for " + path.name + ".");
+    addActivity(actor === "Agent" ? "Agent" : "Human", "Evidence opened · " + path.name, actor === "Agent" ? "agent" : "human");
+    notify("Evidence opened for " + path.name + ".");
     if (actor === "Human") {
       window.requestAnimationFrame(() => {
         document.querySelector(".ledger-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -377,6 +401,28 @@ export function App() {
     ]);
     notify("Brief reset. The three paths are ready to compare.");
   }, [commitRoom, notify]);
+
+  const applySample = useCallback((sample) => {
+    const current = roomRef.current;
+    if (current.draft || current.committedAt) {
+      notify("Reset the case before loading another sample.");
+      return;
+    }
+    const next = {
+      ...current,
+      brief: {
+        text: sample.text,
+        deadlineHours: sample.deadlineHours,
+        mustHaves: sample.mustHaves,
+      },
+      draft: null,
+      committedAt: null,
+      stateVersion: current.stateVersion + 1,
+    };
+    commitRoom(next);
+    addActivity("Human", "Sample loaded · " + sample.label, "human");
+    notify(sample.label + " sample loaded. Edit it, then recalculate fit.");
+  }, [addActivity, commitRoom, notify]);
 
   useEffect(() => {
     const modelContext = document.modelContext;
@@ -547,15 +593,16 @@ export function App() {
             <div className="panel-heading">
               <div>
                 <span className="eyebrow">01 / Frame</span>
-                <h2>What must be true?</h2>
+                <h2>Start with the brief</h2>
               </div>
               <span className="panel-code">BRIEF</span>
             </div>
-            <p className="panel-intro">State the call in plain language. Keep the constraints that can change the answer.</p>
+            <p className="panel-intro">Write what you need to launch. Keep the constraints that could change the choice.</p>
             <label className="field-label" htmlFor="launch-brief">Brief</label>
             <textarea
               id="launch-brief"
               className="brief-input"
+              aria-describedby="brief-helper"
               value={room.brief.text}
               onChange={(event) => {
                 const next = { ...roomRef.current, brief: { ...roomRef.current.brief, text: event.target.value }, stateVersion: roomRef.current.stateVersion + 1 };
@@ -563,6 +610,26 @@ export function App() {
               }}
               onBlur={() => notify("Brief edited. Recalculate when the constraints feel right.")}
             />
+            <div className="sample-helper" id="brief-helper">
+              <span className="field-label">Start with a sample</span>
+              <span className="sample-note">Load a starting point, then make it yours.</span>
+            </div>
+            <div className="sample-list" role="group" aria-label="Sample briefs">
+              {SAMPLE_BRIEFS.map((sample) => (
+                <button
+                  className={"sample-button " + (room.brief.text === sample.text ? "selected" : "")}
+                  key={sample.id}
+                  type="button"
+                  aria-label={"Load " + sample.label + " sample brief"}
+                  aria-pressed={room.brief.text === sample.text}
+                  disabled={Boolean(room.draft || room.committedAt)}
+                  title={room.draft || room.committedAt ? "Reset the case before loading another sample." : "Load this sample brief."}
+                  onClick={() => applySample(sample)}
+                >
+                  {sample.label}
+                </button>
+              ))}
+            </div>
             <div className="brief-meta">
               <label className="mini-field">
                 <span className="field-label">Time available</span>
@@ -590,7 +657,7 @@ export function App() {
             <div className="subheading-row">
               <div>
                 <span className="eyebrow">Weight the call</span>
-                <h3>What wins if it gets tight?</h3>
+                <h3>Set your priorities</h3>
               </div>
               <span className="mono-note">0 to 100</span>
             </div>
@@ -616,14 +683,14 @@ export function App() {
             <button className="primary-button full-button" type="button" onClick={() => compareLaunchPaths({ priorities: room.criteria }, "Human")}>
               Recalculate fit <span aria-hidden="true">↗</span>
             </button>
-            <p className="micro-copy">Weights shift the recommendation; the evidence remains inspectable.</p>
+            <p className="micro-copy">Higher values give a factor more influence. The same weights score every path.</p>
           </aside>
 
           <section className="panel matrix-panel">
             <div className="panel-heading matrix-heading">
               <div>
                 <span className="eyebrow">02 / Compare</span>
-                <h2>Three ways forward</h2>
+                <h2>Compare the options</h2>
               </div>
               <div className="matrix-meta">
                 <span className="path-count">03 paths</span>
@@ -681,10 +748,10 @@ export function App() {
                     className={"row-action " + (path.id === room.focusedPathId ? "active" : "")}
                     type="button"
                     aria-pressed={path.id === room.focusedPathId}
-                    aria-label={(path.id === room.focusedPathId ? "Proof open for " : "Open proof for ") + path.name}
+                    aria-label={(path.id === room.focusedPathId ? "Evidence open for " : "See evidence for ") + path.name}
                     onClick={() => inspectLaunchPath({ pathId: path.id }, "Human")}
                   >
-                    {path.id === room.focusedPathId ? "Proof open" : "Open proof"} <span aria-hidden="true">↗</span>
+                    {path.id === room.focusedPathId ? "Evidence open" : "See evidence"} <span aria-hidden="true">↗</span>
                   </button>
                 </article>
               ))}
@@ -698,14 +765,14 @@ export function App() {
           <aside className="panel ledger-panel">
             <div className="panel-heading">
               <div>
-                <span className="eyebrow">03 / Pressure test</span>
-                <h2>What could break?</h2>
+                <span className="eyebrow">03 / Review</span>
+                <h2>Check the trade-offs</h2>
               </div>
               <span className="panel-code">{focusedPath.index} / {focusedScore}</span>
             </div>
             <div className="focused-path">
               <div className="focused-path-topline">
-                <span className="eyebrow">Proof open</span>
+                <span className="eyebrow">Evidence open</span>
                 <span className="focused-score">{focusedScore}<small>/100</small></span>
               </div>
               <h3>{focusedPath.name}</h3>
@@ -725,7 +792,7 @@ export function App() {
             </div>
             <div className="tradeoff-block">
               <div className="subheading-row compact">
-                <span className="eyebrow">Pressure points</span>
+                <span className="eyebrow">Risks to watch</span>
                 <span className="mono-note">3 visible</span>
               </div>
               <ul>
@@ -766,13 +833,13 @@ export function App() {
                 </>
               ) : (
                 <div className="empty-draft">
-                  <p>Once the path survives pressure-testing, keep the reason with it.</p>
+                  <p>Once a path feels right, keep the reason with it.</p>
                   <button className="secondary-button" type="button" onClick={() => stageLaunchDecision({
                     pathId: focusedPath.id,
                     rationale: "Choose " + focusedPath.name + " because it best balances the active deadline, user value, and delivery confidence.",
                     unresolvedRisks: focusedPath.tradeoffs.slice(-1),
                   }, "Human")}>
-                    Use this path <span aria-hidden="true">↗</span>
+                    Choose this path <span aria-hidden="true">↗</span>
                   </button>
                 </div>
               )}
