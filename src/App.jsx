@@ -757,7 +757,7 @@ export function App() {
               ))}
             </div>
             <div className="matrix-footer">
-              <span className="legend-copy"><i className="legend-dot mint" /> advantage <i className="legend-dot coral" /> pressure point</span>
+              <span className="legend-copy"><i className="legend-dot mint" /> advantage <i className="legend-dot amber" /> pressure point</span>
               <span className="mono-note" title="Every path uses the same five weighted criteria.">same scale / five criteria</span>
             </div>
           </section>
@@ -783,7 +783,7 @@ export function App() {
                 <div className={"evidence-item " + item.tone} key={item.label}>
                   <div className="evidence-topline">
                     <span>{item.label}</span>
-                    <SignalMark tone={item.tone === "positive" ? "mint" : item.tone === "watch" ? "coral" : "slate"} />
+                    <SignalMark tone={item.tone === "positive" ? "mint" : item.tone === "watch" ? "amber" : "slate"} />
                   </div>
                   <strong>{item.value}</strong>
                   <p>{item.note}</p>
