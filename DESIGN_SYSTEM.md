@@ -19,11 +19,11 @@ DECIAP is a decision architecture: a calm, evidence-led surface for making one c
 | Canvas | `#F2F0E8` | Warm page background and negative space |
 | Signal mint | `#65E8CA` | Recommendation, progress, primary action |
 | Mint dark | `#0A7F69` | Accessible text, rails, score bars |
-| Pressure coral | `#EF685C` | Trade-offs and unresolved risk |
+| Pressure amber | `#EFA83A` | Trade-offs and unresolved risk |
 | Human blue | `#5967FF` | Human-authored changes and focused proof |
 | Rule | `#D6D9D0` | Borders and dividers |
 
-Mint is reserved for “this helps the decision”. Coral is reserved for “look closer”. Blue identifies a human action or the proof currently in focus. No accent colour is used as decoration.
+Mint is reserved for “this helps the decision”. Amber is reserved for “look closer”. Blue identifies a human action or the proof currently in focus. No accent colour is used as decoration.
 
 ## Type system
 
