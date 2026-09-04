@@ -26,7 +26,7 @@ The tools are registered imperatively at the top level with document.modelContex
 
 Open the hosted page in a WebMCP-enabled browser and ask:
 
-> We need to launch a useful public web product in eight hours, with no login, one clear user task, strong differentiation, and low delivery risk. Read the decision room, compare the launch paths, inspect the best two, and stage—but do not commit—the recommendation.
+> We need to launch a useful public web product in eight hours, with no login, one clear user task, strong differentiation, and low delivery risk. Read the decision room, compare the launch paths, inspect the best two, and stage the recommendation without committing it.
 
 The staged recommendation is intentionally reversible. Use the human button to commit it.
 
